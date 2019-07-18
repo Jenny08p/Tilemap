@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,10 +10,30 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     public float jumpForce; 
+
+    public Text countText;
+    public Text winText;
+
+    public Text loseText;
+
+    public Text livesText; 
+
+    private Rigidbody rb;
+    private int count;
+
+    private int lives; 
     
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        count = 0;
+        lives = 3;
+
+        SetCountText ();
+        SetLivesText ();
+
+        winText.text = "";
+        loseText.text = "";
     }
 
     void Update()
@@ -36,6 +58,42 @@ public class PlayerController : MonoBehaviour {
             {
                 rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag ( "Pick Up"))
+        {
+            other.gameObject.SetActive (false);
+            count = count +1;
+            SetCountText ();
+        }
+
+        if (other.gameObject.CompareTag ( "Pick Bad"))
+        {
+            other.gameObject.SetActive (false);
+            lives = lives -1;
+            SetLivesText ();
+        }
+    }
+     void SetCountText ()
+    {
+        countText.text = "Count: " + count.ToString ();
+        if (count >= 4)
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex + 1);
+         }
+    }
+    void SetLivesText ()
+    {
+        livesText.text = "Lives: " + lives.ToString ();
+        if (lives == 0)
+        {
+            loseText.text = "You Lost!";
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex + 0);
         }
     }
 }
