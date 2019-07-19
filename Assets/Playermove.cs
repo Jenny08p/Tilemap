@@ -8,6 +8,10 @@ public class Playermove : MonoBehaviour {
 
     private Rigidbody2D rb2d;
 
+    public AudioSource winsong; 
+
+    public AudioClip winclip; 
+
     public float speed;
     public float jumpForce; 
 
@@ -81,8 +85,12 @@ public class Playermove : MonoBehaviour {
     {
         countText.text = "Count: " + count.ToString ();
         if (count >= 4)
-        {
+         {
             winText.text = "You Win!";
+            winsong.Stop();
+            winsong.clip = winclip; 
+            winsong.Play(); 
+            Time.timeScale = 0f; 
          }
     }
     void SetLivesText ()
