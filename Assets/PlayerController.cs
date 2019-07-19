@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
 
@@ -22,8 +23,16 @@ public class PlayerController : MonoBehaviour {
     private int count;
 
     private int lives; 
+
+    internal UnityEvent winEvent; 
     
-    void Start()
+    
+    void Awake() 
+    {
+        winEvent = new UnityEvent(); 
+    }
+    
+     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         count = 0;
@@ -34,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 
         winText.text = "";
         loseText.text = "";
+
     }
 
     void Update()
@@ -82,9 +92,8 @@ public class PlayerController : MonoBehaviour {
         countText.text = "Count: " + count.ToString ();
         if (count >= 4)
         {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex + 1);
-         }
+            winEvent.Invoke();
+        }
     }
     void SetLivesText ()
     {

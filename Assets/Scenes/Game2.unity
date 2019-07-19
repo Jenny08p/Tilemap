@@ -1715,6 +1715,7 @@ GameObject:
   - component: {fileID: 663838593}
   - component: {fileID: 663838592}
   - component: {fileID: 663838591}
+  - component: {fileID: 663838595}
   - component: {fileID: 663838590}
   m_Layer: 0
   m_Name: Player
@@ -1732,17 +1733,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 663838589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f3cb9552da1ca4caed630f68b48656, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a107ae6e02dec54e8ab201ecf0d541a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winsong: {fileID: 486200906}
-  winclip: {fileID: 8300000, guid: f7dec19f4512de5498559a05df2bfd44, type: 3}
-  speed: 10
-  jumpForce: 5
-  countText: {fileID: 1562162811}
-  winText: {fileID: 933307050}
-  loseText: {fileID: 540307892}
-  livesText: {fileID: 441636911}
+  winclip: {fileID: 0}
+  winsong: {fileID: 0}
 --- !u!50 &663838591
 Rigidbody2D:
   serializedVersion: 4
@@ -1852,6 +1847,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &663838595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663838589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcd6f14fb311bf4ab10c23afc4704c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  jumpForce: 5
+  countText: {fileID: 1562162811}
+  winText: {fileID: 933307050}
+  loseText: {fileID: 540307892}
+  livesText: {fileID: 441636911}
 --- !u!1 &933307048
 GameObject:
   m_ObjectHideFlags: 0
